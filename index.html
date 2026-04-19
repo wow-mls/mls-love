@@ -24,10 +24,36 @@ canvas { display:block; }
     0%{transform:translateY(100vh);opacity:1;}
     100%{transform:translateY(-120vh);opacity:0;}
 }
+
+.card{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    max-width:600px;
+    background:white;
+    border-radius:20px;
+    padding:12px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    z-index:20;
+}
+
+.card video{
+    width:100%;
+    border-radius:12px;
+}
 </style>
 </head>
 
 <body>
+
+<div class="card">
+<video controls>
+    <source src="https://wow-mls.github.io/mls-love/mls.mp4" type="video/mp4">
+</video>
+</div>
+
 <canvas id="c"></canvas>
 
 <script>
@@ -41,8 +67,6 @@ function resize(){
 resize();
 addEventListener("resize",resize);
 
-const NAME="ЛЮБЛЮ САИДУ";
-
 function heart(t){
     return{
         x:16*Math.pow(Math.sin(t),3),
@@ -54,98 +78,8 @@ let bg=[];
 for(let i=0;i<3000;i++){
     let t=Math.random()*Math.PI*2;
     let p=heart(t);
-    bg.push({
-        x:p.x,
-        y:p.y,
-        j:(Math.random()-0.5)*6,
-        ph:Math.random()*100
-    });
+    bg.push({x:p.x,y:p.y,ph:Math.random()*100});
 }
-
-function getTextPoints(text){
-    let off=document.createElement("canvas");
-    let o=off.getContext("2d");
-
-    off.width=1400;
-    off.height=420;
-
-    o.fillStyle="black";
-    o.fillRect(0,0,off.width,off.height);
-
-    o.font="bold 160px Arial";
-    o.textAlign="center";
-    o.textBaseline="middle";
-    o.fillStyle="white";
-    o.fillText(text,off.width/2,off.height/2);
-
-    let d=o.getImageData(0,0,off.width,off.height).data;
-
-    let pts=[];
-
-    for(let y=0;y<off.height;y+=6){
-        for(let x=0;x<off.width;x+=6){
-            let i=(y*off.width+x)*4;
-            if(d[i]>200){
-                pts.push({
-                    x:(x-off.width/2)/8,
-                    y:(y-off.height/2)/8
-                });
-            }
-        }
-    }
-
-    return pts;
-}
-
-let draw=[];
-let lastX=0,lastY=0;
-
-function add(x,y){
-    let dx=x-lastX;
-    let dy=y-lastY;
-    if(Math.sqrt(dx*dx+dy*dy)<10) return;
-
-    lastX=x;
-    lastY=y;
-
-    let pts=getTextPoints(NAME);
-
-    for(let i=0;i<pts.length;i+=2){
-        draw.push({
-            x:x+pts[i].x,
-            y:y+pts[i].y,
-            life:1
-        });
-    }
-}
-
-let down=false;
-
-onmousedown=e=>{
-    down=true;
-    lastX=e.clientX;
-    lastY=e.clientY;
-};
-
-onmouseup=()=>down=false;
-
-onmousemove=e=>{
-    if(down) add(e.clientX,e.clientY);
-};
-
-ontouchstart=e=>{
-    down=true;
-    let t=e.touches[0];
-    lastX=t.clientX;
-    lastY=t.clientY;
-};
-
-ontouchend=()=>down=false;
-
-ontouchmove=e=>{
-    let t=e.touches[0];
-    if(down) add(t.clientX,t.clientY);
-};
 
 function anim(t){
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -162,16 +96,6 @@ function anim(t){
         ctx.fill();
     });
 
-    draw.forEach(d=>{
-        d.life-=0.012;
-        ctx.fillStyle="rgba(255,120,200,"+d.life+")";
-        ctx.beginPath();
-        ctx.arc(d.x,d.y,2,0,Math.PI*2);
-        ctx.fill();
-    });
-
-    draw=draw.filter(d=>d.life>0);
-
     requestAnimationFrame(anim);
 }
 
@@ -180,7 +104,7 @@ anim(0);
 function createHeart(){
     const el=document.createElement("div");
     el.className="bg-heart";
-    el.innerHTML="❤";
+    el.innerHTML="❤️";
     el.style.left=Math.random()*window.innerWidth+"px";
     el.style.bottom="-50px";
     el.style.fontSize=(10+Math.random()*25)+"px";
@@ -191,5 +115,6 @@ function createHeart(){
 
 setInterval(createHeart,70);
 </script>
+
 </body>
 </html>
