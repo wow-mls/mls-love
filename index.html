@@ -66,8 +66,8 @@ function getTextPoints(text){
     let off=document.createElement("canvas");
     let o=off.getContext("2d");
 
-    off.width=2000;
-    off.height=600;
+    off.width=1400;
+    off.height=420;
 
     o.fillStyle="black";
     o.fillRect(0,0,off.width,off.height);
@@ -87,8 +87,8 @@ function getTextPoints(text){
             let i=(y*off.width+x)*4;
             if(d[i]>200){
                 pts.push({
-                    x:(x-off.width/2)/10,
-                    y:(y-off.height/2)/10
+                    x:(x-off.width/2)/8,
+                    y:(y-off.height/2)/8
                 });
             }
         }
