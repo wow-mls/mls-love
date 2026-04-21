@@ -103,18 +103,55 @@ body {
     transform: translateY(-5px);
 }
 
-/* 📱 адаптация */
+/* 📱 адаптация для телефонов (УЛУЧШЕННАЯ) */
 @media (max-width: 768px) {
+
+    .diary {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
     .memory {
         flex-direction: column !important;
+        align-items: center;
         text-align: center;
+        gap: 12px;
+        margin: 25px 0;
     }
 
-    .memory img {
+    /* карточка воспоминания */
+    .memory .text {
         width: 100%;
+        padding: 16px;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(255, 150, 180, 0.2);
+        font-size: 15px;
+        line-height: 1.5;
     }
 
-    .text {
-        width: 90%;
+    /* фото — меньше и аккуратнее */
+    .memory img {
+        width: 85%;
+        max-width: 260px;
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    /* заголовки */
+    .text h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    /* немного “воздуха” между блоками */
+    .memory.left, .memory.right {
+        transform: none;
+    }
+
+    /* кнопка на главном экране */
+    .hero button {
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 25px;
     }
 }
