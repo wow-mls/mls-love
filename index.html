@@ -10,56 +10,101 @@
 <body>
 
 <div class="hero">
-    <h1>Наш маленький дневник 💗</h1>
-    <p>Место, где живут наши воспоминания</p>
-    <button onclick="openDiary()">Открыть дневник</button>
+<h1>Наш маленький дневник 💗</h1>
+<p>Место, где живут наши воспоминания</p>
+
+<button onclick="openDiary()">Открыть дневник</button>
+<button onclick="openMe()">От меня</button>
+</div>
+
+<!-- 💌 МОДАЛКА "ОТ МЕНЯ" -->
+<div id="meModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeMe()">✖</span>
+
+        <video controls>
+            <source src="mls.mp4" type="video/mp4">
+        </video>
+
+        <p>
+            Ты мне очень дорога.  
+            С тобой спокойно, тепло и хорошо.  
+            Ты правда важна для меня 💗
+        </p>
+    </div>
 </div>
 
 <div id="diary" class="diary">
 
-    <div class="memory right">
-        <img src="image1.jpg">
-        <div class="text">
-            <h3>Выпускной</h3>
-            <p>Выпускной в 9 классе... этот день стал чем-то большим 💗</p>
-        </div>
-    </div>
+<!-- Блок 1 -->
+<div class="memory right">
+<img src="image1.jpg">
+<div class="text">
+<h3>Выпускной</h3>
+<p>
+Выпускной в 9 классе... Это день, который должен был быть про школу,
+но стал чем-то большим. Помню атмосферу, свет, музыку и тебя.
+Именно тогда я влюбился в тебя 💗Наше первое совместное фото. Ты легла на мое плечо и в тот момент я неожиданно засмущался.
+Я растерялся, не знал, как правильно себя вести, и из-за этого так и не обнял тебя.
+Самая любимая фотография 💞
+</p>
+</div>
+</div>
 
-    <div class="memory left">
-        <img src="image2.jpg">
-        <div class="text">
-            <h3>Первая фотография</h3>
-            <p>Ты легла на моё плечо… и я засмущался 💞</p>
-        </div>
-    </div>
+<!-- Блок 2 -->
+<div class="memory left">
+<img src="image2.jpg">
+<div class="text">
+<h3>Первая фотография</h3>
+<p>
+Наше первое совместное фото. Ты легла на мое плечо и в тот момент я неожиданно засмущался.
+Я растерялся, не знал, как правильно себя вести, и из-за этого так и не обнял тебя.
+Самая любимая фотография 💞
+</p>
+</div>
+</div>
 
-    <div class="memory right">
-        <img src="image3.jpg">
-        <div class="text">
-            <h3>Ты, я и молчание</h3>
-            <p>Я помню твою руку и тот спокойный день 💗</p>
-        </div>
-    </div>
+<!-- Блок 3 -->
+<div class="memory right">
+<img src="image3.jpg">
+<div class="text">
+<h3>Ты, я и мое молчание</h3>
+<p>
+Это была наша вторая совместная фотография. Я хорошо помню этот день:
+тот воздух, спокойствие вокруг и свое молчание.
+Помню, как мы держались за руку, помню твою нежную руку, которую я не хотел отпускать 💗
+</p>
+</div>
+</div>
 
-    <div class="memory left">
-        <img src="image4.jpg">
-        <div class="text">
-            <h3>Моя Абу Стойка</h3>
-            <p>Я стеснялся, сбивался, но мне было хорошо 😊</p>
-        </div>
-    </div>
+<!-- Блок 4 -->
+<div class="memory left">
+<img src="image4.jpg">
+<div class="text">
+<h3>Моя Абу Стойка</h3>
+<p>
+Эти репетиции запомнились мне больше всего.
+День, когда мне было неловко, когда я был тормозом.
+Я стеснялся, сбивался с танца и не мог нормально вести себя рядом с тобой 😊
+</p>
+</div>
+</div>
 
 </div>
 
 <script>
 function openDiary() {
-    const diary = document.getElementById("diary");
-    diary.style.display = "block";
+const diary = document.getElementById("diary");
+diary.style.display = "block";
+window.scrollTo({ top: diary.offsetTop, behavior: "smooth" });
+}
 
-    window.scrollTo({
-        top: diary.offsetTop,
-        behavior: "smooth"
-    });
+function openMe() {
+document.getElementById("meModal").style.display = "flex";
+}
+
+function closeMe() {
+document.getElementById("meModal").style.display = "none";
 }
 </script>
 
