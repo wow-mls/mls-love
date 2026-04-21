@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Наш маленький дневник</title>
-<link rel="stylesheet" href="style.css">
+
+<!-- ВАЖНО: ./ -->
+<link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -19,58 +21,35 @@
 
 <div id="diary" class="diary">
 
-    <!-- 1 -->
     <div class="memory right">
-        <img src="image1.jpg">
+        <img src="./image1.jpg">
         <div class="text">
             <h3>Выпускной</h3>
-            <p>
-                Выпускной в 9 классе... Это день, который должен был быть про школу,
-                но стал чем-то большим. Помню атмосферу, свет, музыку и тебя.
-                Именно тогда я влюбился в тебя 💗
-            </p>
+            <p>Именно тогда я влюбился в тебя 💗</p>
         </div>
     </div>
 
-    <!-- 2 -->
     <div class="memory left">
-        <img src="image2.jpg">
+        <img src="./image2.jpg">
         <div class="text">
             <h3>Первая фотография</h3>
-            <p>
-                Наше первое совместное фото. Ты легла на мое плечо,
-                и в тот момент я неожиданно засмущался. Я растерялся,
-                не знал, как правильно себя вести, и из-за этого так и не обнял тебя.
-                Самая любимая фотография 💞
-            </p>
+            <p>Самая любимая фотография 💞</p>
         </div>
     </div>
 
-    <!-- 3 -->
     <div class="memory right">
-        <img src="image3.jpg">
+        <img src="./image3.jpg">
         <div class="text">
             <h3>Ты, я и мое молчание</h3>
-            <p>
-                Это была наша вторая совместная фотография. Я хорошо помню этот день:
-                тот воздух, спокойствие вокруг и свое молчание.
-                Помню, как мы держались за руку, помню твою нежную руку,
-                которую я не хотел отпускать 💗
-            </p>
+            <p>Я не хотел отпускать тебя 💗</p>
         </div>
     </div>
 
-    <!-- 4 -->
     <div class="memory left">
-        <img src="image4.jpg">
+        <img src="./image4.jpg">
         <div class="text">
             <h3>Моя Абу Стойка</h3>
-            <p>
-                Эти репетиции запомнились мне больше всего.
-                День, когда мне было неловко, когда я был тормозом.
-                Я стеснялся, сбивался с танца и не мог нормально
-                вести себя рядом с тобой 😊
-            </p>
+            <p>Я стеснялся рядом с тобой 😊</p>
         </div>
     </div>
 
@@ -78,16 +57,9 @@
 
 <script>
 function openDiary() {
-    const diary = document.getElementById("diary");
-    diary.style.display = "block";
-
-    window.scrollTo({
-        top: diary.offsetTop,
-        behavior: "smooth"
-    });
+    document.getElementById("diary").style.display = "block";
 }
 
-/* 💗 сердечки */
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -98,12 +70,10 @@ function createHeart() {
 
     document.querySelector(".hearts").appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
+    setTimeout(() => heart.remove(), 6000);
 }
 
-setInterval(createHeart, 250);
+setInterval(createHeart, 300);
 </script>
 
 </body>
